@@ -50,7 +50,6 @@ class Todo {
     this._todoElement = this._templateElement.content
       .querySelector(".todo")
       .cloneNode(true);
-    this._todoElement.id = this._data.id;
 
     this._todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");
 
