@@ -1,3 +1,6 @@
+export const addTodoButton = document.querySelector(".button_action_add");
+export const todosList = document.querySelector(".todos__list");
+
 export const initialTodos = [
   {
     id: "7cec7373-681b-49d9-b065-021d61a69d03",
