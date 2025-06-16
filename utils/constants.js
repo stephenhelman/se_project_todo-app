@@ -1,5 +1,4 @@
 export const addTodoButton = document.querySelector(".button_action_add");
-export const todosList = document.querySelector(".todos__list");
 
 export const initialTodos = [
   {

@@ -2,7 +2,6 @@ import {
   initialTodos,
   validationConfig,
   addTodoButton,
-  todosList,
 } from "../utils/constants.js";
 import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 
@@ -19,9 +18,9 @@ const generateTodo = (data) => {
   return todoElement;
 };
 
-const renderTodo = (todo, container) => {
+const renderTodo = (todo) => {
   const todoToRender = generateTodo(todo);
-  container.append(todoToRender);
+  section.addItem(todoToRender);
 };
 
 const handleCheck = (completed) => {
@@ -35,23 +34,20 @@ const handleAddOrDelete = (status) => {
 const section = new Section({
   items: initialTodos,
   renderer: (item) => {
-    const todo = generateTodo(item);
-    section.addItem(todo);
+    renderTodo(item);
   },
   containerSelector: ".todos__list",
 });
 
-const popupWithForm = new PopupWithForm(
-  {
-    popupSelector: "#add-todo-popup",
-    handleFormSubmit: (values) => {
-      renderTodo(values, todosList);
-      popupWithForm.close();
-      validator.resetValidation();
-    },
+const popupWithForm = new PopupWithForm({
+  popupSelector: "#add-todo-popup",
+  handleFormSubmit: (values) => {
+    renderTodo(values);
+    handleAddOrDelete(true);
+    popupWithForm.close();
+    validator.resetValidation();
   },
-  handleAddOrDelete
-);
+});
 
 const todoCounter = new TodoCounter(initialTodos, ".counter__text");
 
